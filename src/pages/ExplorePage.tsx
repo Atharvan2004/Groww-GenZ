@@ -77,9 +77,37 @@ export default function ExplorePage() {
 
       <section>
         <h2 className="mb-3 text-lg font-bold text-gray-900">What's buzzing</h2>
-        <div className="space-y-3">
-          <BuzzCard claim="This stock will double this year 🚀" meta="32K mentions · Trending" onClick={() => openRealityCheck('This stock will double this year 🚀')} />
-          <BuzzCard claim="₹5,000 SIP can become ₹1 Cr" meta="Trending online" onClick={() => openRealityCheck('₹5,000 SIP can become ₹1 Cr')} />
+        <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-1">
+          <BuzzCard
+            category="Stock"
+            tag="Stock · Trending"
+            headline="This stock is suddenly everywhere 👀"
+            stat="+14%"
+            statColor="text-groww-green"
+            subtitle="MosChip Technologies gained up to 14% amid strong momentum"
+            cta="Reality Check"
+            onClick={() => openRealityCheck('This stock is suddenly everywhere — MosChip Technologies gained up to 14% amid strong momentum')}
+          />
+          <BuzzCard
+            category="Budget"
+            tag="Budget · Infrastructure"
+            headline="₹11L Cr for infrastructure — what changes?"
+            stat="₹11 Lakh Cr"
+            statColor="text-gray-900"
+            subtitle="India's FY27 Budget allocates around ₹11 lakh crore to capital expenditure"
+            cta="See the impact"
+            onClick={() => openRealityCheck('₹11L Cr for infrastructure — India\'s FY27 Budget allocates around ₹11 lakh crore to capital expenditure')}
+          />
+          <BuzzCard
+            category="ETF"
+            tag="ETF · New Rules"
+            headline="ETF rules just changed. Should you care?"
+            stat="10% → 20%"
+            statColor="text-gray-900"
+            subtitle="New ETF price-band rules allow bands to widen from 10% to 20%"
+            cta="Understand this"
+            onClick={() => openRealityCheck('ETF rules just changed — New ETF price-band rules allow bands to widen from 10% to 20%')}
+          />
         </div>
       </section>
 
@@ -137,12 +165,27 @@ function GoalCards() {
   </>;
 }
 
-function BuzzCard({ claim, meta, onClick }: { claim: string; meta: string; onClick: () => void }) {
-  return <article className="rounded-xl border border-gray-200 bg-white p-4">
-    <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-gray-600"><span aria-hidden="true">🔥</span>What's buzzing</div>
-    <p className="text-sm font-semibold text-gray-900">“{claim}”</p>
-    <p className="mt-1 text-xs text-gray-500">{meta}</p>
-    <button onClick={onClick} className="mt-3 flex items-center gap-1 text-sm font-semibold text-groww-blue">Reality Check <ChevronRight size={16} /></button>
+function BuzzCard({ category, tag, headline, stat, statColor, subtitle, cta, onClick }: {
+  category: string;
+  tag: string;
+  headline: string;
+  stat: string;
+  statColor: string;
+  subtitle: string;
+  cta: string;
+  onClick: () => void;
+}) {
+  const badgeStyles: Record<string, string> = {
+    Stock: 'bg-orange-50 text-orange-600',
+    Budget: 'bg-groww-pale-blue text-groww-blue',
+    ETF: 'bg-groww-pale-green text-groww-green',
+  };
+  return <article className="min-w-[280px] shrink-0 rounded-xl border border-gray-200 bg-white p-4">
+    <span className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold ${badgeStyles[category] ?? 'bg-gray-100 text-gray-600'}`}>{tag}</span>
+    <p className={`mt-3 text-3xl font-bold tracking-tight ${statColor}`}>{stat}</p>
+    <h3 className="mt-2 text-sm font-semibold text-gray-900 leading-snug">{headline}</h3>
+    <p className="mt-1 text-xs text-gray-500 leading-snug">{subtitle}</p>
+    <button onClick={onClick} className="mt-3 flex items-center gap-1 text-sm font-semibold text-groww-blue">{cta} <ChevronRight size={16} /></button>
   </article>;
 }
 
