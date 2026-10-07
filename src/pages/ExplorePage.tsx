@@ -180,7 +180,7 @@ function BuzzCard({ category, tag, headline, stat, statColor, subtitle, cta, onC
     Budget: 'bg-groww-pale-blue text-groww-blue',
     ETF: 'bg-groww-pale-green text-groww-green',
   };
-  return <article className="min-w-[280px] shrink-0 rounded-xl border border-gray-200 bg-white p-4">
+  return <article className="min-w-[230px] shrink-0 rounded-xl border border-gray-200 bg-white p-4">
     <span className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold ${badgeStyles[category] ?? 'bg-gray-100 text-gray-600'}`}>{tag}</span>
     <p className={`mt-3 text-3xl font-bold tracking-tight ${statColor}`}>{stat}</p>
     <h3 className="mt-2 text-sm font-semibold text-gray-900 leading-snug">{headline}</h3>

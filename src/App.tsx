@@ -15,7 +15,7 @@ function App() {
   return (
     <AppProvider>
       <Router>
-        <div className="pb-20 min-h-screen bg-gray-50 flex flex-col max-w-md mx-auto shadow-xl relative overflow-hidden bg-white">
+        <div className="app-shell pb-20 min-h-screen bg-gray-50 flex flex-col max-w-md w-full mx-auto shadow-xl relative overflow-hidden bg-white">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/goal/:id" element={<GoalDetail />} />
